@@ -52,7 +52,7 @@ export default ({
                     label: this.label,
                     data: newConfirmed,
                     backgroundColor: this.colorData,
-                    hoverOffset: 4
+                    hoverOffset: 1
                     }
                 ]
             }, this.option

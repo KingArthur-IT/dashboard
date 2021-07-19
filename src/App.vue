@@ -15,7 +15,8 @@
           Covid-19 Statistics
       </div>
     </v-app-bar>
-    <v-row class="mt-15">
+    <h2 class="text-center mt-16 mb-4">Covid Statistics Table by Countries</h2>
+    <v-row>
       <v-col cols="10" offset="1">
         <Table
           v-bind:arrCountries="arrCountries"
@@ -93,20 +94,22 @@
       <v-container>
         <v-row>
           <v-col cols="1" offset="4">
-            <v-btn height="48px" 
+            <v-btn height="48px" width="100%"
                   @click="countriesLidersCount > 1 ? countriesLidersCount-- : countriesLidersCount"
             ><v-icon>mdi-minus</v-icon></v-btn>
           </v-col>
-          <v-col cols="2">
+          <v-col cols="1">
             <v-text-field 
             :label="String(countriesLidersCount)" 
             solo
             v-model="countriesLidersCount"
             :rules="numberRule"
+            width="100%"
+            size="100%"
           ></v-text-field>
           </v-col>
           <v-col cols="1">
-          <v-btn height="48px" 
+          <v-btn height="48px" width="100%"
             @click="countriesLidersCount < 11 ? countriesLidersCount++ : countriesLidersCount"
           ><v-icon>mdi-plus</v-icon></v-btn>
           </v-col>
