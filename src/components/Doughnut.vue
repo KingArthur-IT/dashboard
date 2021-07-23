@@ -27,6 +27,7 @@ export default ({
     methods: {
         render(){
             let total = 0;
+            let countriesCode = [];
         
             this.chartData.forEach(element => {
                 total += element.total_confirmed;
@@ -41,6 +42,7 @@ export default ({
                 countriesName.push(sortedData[index].name);
                 newConfirmed.push(sortedData[index].total_confirmed);
                 summ += sortedData[index].total_confirmed;
+                countriesCode.push(sortedData[index].code);
             }
             countriesName.push('Others');
             newConfirmed.push(total - summ);
@@ -57,6 +59,7 @@ export default ({
                 ]
             }, this.option
             )
+            this.$emit('codes', countriesCode);
         }
     },
     watch: {

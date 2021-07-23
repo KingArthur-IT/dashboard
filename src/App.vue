@@ -114,20 +114,29 @@
           ><v-icon>mdi-plus</v-icon></v-btn>
           </v-col>
         </v-row>
-        <v-row>
-          <v-col cols="4" offset="4">
+        <v-row class="d-flex align-center">
+          <v-col cols="4" offset="1">
               <Doughnut
                 v-if="arrCountries.length > 0"
                 label="Donut"
                 :chartData="arrCountries"
                 :colorData="arrColors"
                 :countriesCount="countriesLidersCount"
+                @codes='getCodes'
               ></Doughnut>
+          </v-col>
+          <v-col cols="5">
+             <PlotlyMap 
+                v-if="arrContriesCode.length > 0"
+                :codes="arrContriesCode"
+            ></PlotlyMap>
           </v-col>
         </v-row>        
       
       
       </v-container>
+      
+      <PlotlyChart></PlotlyChart>
   </v-app>
 </template>
 
@@ -136,13 +145,15 @@ import axios from 'axios';
 import Table from '@/components/Table'
 import LineChart from '@/components/LineChart.vue';
 import Doughnut from '@/components/Doughnut.vue';
+import PlotlyChart from '@/components/PlotlyChart.vue';
+import PlotlyMap from '@/components/PlotlyMap.vue';
 import randomColor  from 'randomcolor'
 
 export default {
   name: 'App',
 
   components: {
-    Table, LineChart, Doughnut
+    Table, LineChart, Doughnut, PlotlyChart, PlotlyMap
   },
 
   data: () => ({
@@ -155,6 +166,7 @@ export default {
     arrNewDeaths: [],
     arrCountries: [],
     arrColors: [],
+    arrContriesCode : [],
     //chart
     chartOptions: {
         responsive: true,
@@ -200,6 +212,7 @@ export default {
       countriesData.data.data.forEach(el => {
         this.arrCountries.push({
           name: el.name,
+          code: el.code,
           population: el.population,
           total_confirmed: el.latest_data.confirmed,
           total_recovered: el.latest_data.recovered,
@@ -209,6 +222,9 @@ export default {
         })
         this.arrColors.push(randomColor())
       });
+    },
+    getCodes (data) {
+      this.arrContriesCode = data;
     }
   },
   mounted() {
