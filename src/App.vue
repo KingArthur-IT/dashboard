@@ -131,12 +131,21 @@
                 :codes="arrContriesCode"
             ></PlotlyMap>
           </v-col>
-        </v-row>        
+        </v-row>   
+        <h2 class="text-center">Density plot</h2>     
+        <v-row>          
+          <v-col cols="6" offset="3">
+            <PlotlyChart></PlotlyChart>
+          </v-col>
+        </v-row>     
+        <h2 class="text-center">Contour plot</h2>     
+        <v-row>          
+          <v-col cols="6" offset="3">
+            <ContoursPlot></ContoursPlot>
+          </v-col>
+        </v-row>    
+      </v-container>     
       
-      
-      </v-container>
-      
-      <PlotlyChart></PlotlyChart>
   </v-app>
 </template>
 
@@ -147,13 +156,14 @@ import LineChart from '@/components/LineChart.vue';
 import Doughnut from '@/components/Doughnut.vue';
 import PlotlyChart from '@/components/PlotlyChart.vue';
 import PlotlyMap from '@/components/PlotlyMap.vue';
+import ContoursPlot from '@/components/ContoursPlot.vue';
 import randomColor  from 'randomcolor'
 
 export default {
   name: 'App',
 
   components: {
-    Table, LineChart, Doughnut, PlotlyChart, PlotlyMap
+    Table, LineChart, Doughnut, PlotlyChart, PlotlyMap, ContoursPlot
   },
 
   data: () => ({

@@ -11,20 +11,14 @@ export default {
     },
     data () {
         return {
-            layout : {
-                'geo': {
-                    'scope': 'europe',
-                    'resolution': 50
-                }
-            },
             xContour : [],
             yContour : [],
             tContour : [],       
             layoutContour : {
                 showlegend: false,
                 autosize: false,
-                width: 600,
-                height: 550,
+                width: 650,
+                height: 600,
                 margin: {t: 50},
                 hovermode: 'closest',
                 bargap: 0,
@@ -76,11 +70,11 @@ export default {
                 rds = x * x + y * y;
             } while (rds == 0 || rds > 1);
             c = Math.sqrt(-2 * Math.log(rds) / rds); // Box-Muller transform
-            return x * c; // throw away extra sample y * c
+            return x * c * 2; // throw away extra sample y * c
         }
     },
     mounted () {
-        this.genNewData();       
+        this.genNewData();      
         
         this.loading = true;
     }, 
@@ -102,11 +96,15 @@ export default {
                 x: this.xContour,
                 y: this.yContour,
                 name: 'density',
-                ncontours: 20,
+                ncontours: 40,
                 colorscale: 'Hot',
                 reversescale: true,
-                showscale: false,
-                type: 'histogram2dcontour'
+                showscale: true,
+                type: 'histogram2dcontour',
+                line: {
+                    color: 'rgb(102,0,0)',
+                    width: 0
+                }
             },
             {
                 x: this.xContour,
